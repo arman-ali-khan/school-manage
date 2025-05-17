@@ -1,7 +1,5 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { redirect } from 'next/navigation';
-import { getCurrentUser } from '@/lib/auth';
 import { StudentRegistrationForm } from '@/components/registration/student-registration-form';
 
 export const metadata: Metadata = {
@@ -9,12 +7,9 @@ export const metadata: Metadata = {
   description: 'Complete your student registration',
 };
 
-export default async function RegistrationPage() {
-  const user = await getCurrentUser();
-  
-  if (!user) {
-    redirect('/auth/login');
-  }
+export default function RegistrationPage() {
+  // Demo user ID for form
+  const demoUserId = '123';
   
   return (
     <div className="container px-4 py-8 mx-auto max-w-5xl">
@@ -28,7 +23,7 @@ export default async function RegistrationPage() {
         
         <div className="rounded-lg border bg-card text-card-foreground shadow-sm">
           <div className="p-6">
-            <StudentRegistrationForm userId={user.id} />
+            <StudentRegistrationForm userId={demoUserId} />
           </div>
         </div>
       </div>

@@ -1,8 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { redirect } from 'next/navigation';
-import { getCurrentUser } from '@/lib/auth';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Award, FileText, Search, Download, Clock, CheckCircle, AlertCircle } from 'lucide-react';
@@ -12,13 +10,7 @@ export const metadata: Metadata = {
   description: 'Manage and request educational certificates',
 };
 
-export default async function CertificatesPage() {
-  const user = await getCurrentUser();
-  
-  if (!user) {
-    redirect('/auth/login');
-  }
-  
+export default function CertificatesPage() {
   return (
     <div className="container px-4 py-8 mx-auto max-w-7xl">
       <div className="flex flex-col space-y-6">
